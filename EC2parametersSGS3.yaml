@@ -1,0 +1,41 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Parameters:
+  InstanceType:
+    Type: String
+    Default: t2.micro
+    Description: EC2 instance type
+  SSHKeyName:
+    Type: AWS::EC2::KeyPair::KeyName
+    Description: EC2 SSH key pair name
+
+Resources:
+  EC2Instance:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      ImageId: ami-xxxxxxxxxxxxxx  # Replace with the desired AMI ID
+      InstanceType: !Ref InstanceType
+      KeyName: !Ref SSHKeyName
+      SecurityGroupIds:
+        - !Ref EC2SecurityGroup
+
+  EC2SecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: Security group for EC2 instance
+      SecurityGroupIngress:
+        - CidrIp: 0.0.0.0/0
+          IpProtocol: -1
+
+  S3Bucket:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: my-sample-bucket  # Replace with your desired bucket name
+
+Outputs:
+  EC2InstanceId:
+    Value: !Ref EC2Instance
+    Description: EC2 instance ID
+  S3BucketName:
+    Value: !Ref S3Bucket
+    Description: S3 bucket name

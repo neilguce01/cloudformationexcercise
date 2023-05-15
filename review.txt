@@ -1,0 +1,25 @@
+Cloudformation:
+YAML template
+- resources (S3, EC2, SG) (tags, imageid, userdata)
+- parameters (specify resources and use it as reference)
+- conditions - will only create the resources if the conditions met, 
+- DNSRecords - albs,recordsets
+- Outputs - values you can import to other stacks
+- mappings - variables
+
+TAM process
+- we used windsor workflows to run decks and kick off cloudformation templates (managed by other team)
+- under windsor, several yaml/json are deployed that are being pulled in from Git and maintained by devops
+- The environment is a dev environments, 1 stack has several nodes and launch templates for ec2 instances running on linux
+- the application is called MultiTenant which can cater multiple customers (company perse) in one stack and running on ASG
+- we do maintain the changes on parameters, update the versions and stacks, troubleshoot issues concerning ASG, EC2, DNS recordsets
+
+Docker
+- docker run – This command is used to start a new Docker container from an image.
+- docker ps – This command is used to list all the running Docker containers.
+- docker stop – This command is used to stop a running container.
+- docker rm – This command is used to remove a Docker container.
+- docker images – This command is used to list all the Docker images that are currently available on your system.
+- docker pull – This command is used to download a Docker image from a registry.
+- docker exec – This command is used to execute a command in a running container.
+- ocker-compose – This command is used to manage multi-container Docker applications.
